@@ -1,5 +1,5 @@
 # Build stage
-FROM maven:3.9.4-amazoncorretto-8-al2023 AS build
+FROM maven:latest AS build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
