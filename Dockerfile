@@ -2,7 +2,7 @@
 FROM openjdk:18
  
 # Copy the jar file into our app
-COPY ./target/blog-0.0.1-SNAPSHOT.jar
+COPY ./target/blog-0.0.1-SNAPSHOT.jar blog.jar
 # Exposing port 8080
 EXPOSE 8080
 
