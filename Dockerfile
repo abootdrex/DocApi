@@ -1,11 +1,6 @@
-FROM eclipse-temurin:17-jdk-focal
- 
-WORKDIR /app
- 
-COPY .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
- 
-COPY src ./src
- 
-CMD ["./mvnw", "spring-boot:run"]
+FROM openjdk:20
+VOLUME /tmp
+EXPOSE 8080
+ARG JAR_FILE=target/blog.jar
+ADD ${JAR_FILE} blog.jar
+ENTRYPOINT ["java","-jar","/blog.jar"]
