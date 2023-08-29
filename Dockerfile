@@ -1,10 +1,8 @@
-# Fetching latest version of Java
-FROM openjdk:18
- 
-# Copy the jar file into our app
-COPY ./target/blog-0.0.1-SNAPSHOT.jar blog.jar
-# Exposing port 8080
-EXPOSE 8080
+FROM maven:3.8.5-openjdk-17 AS build
+COPY . .
+RUN mvn clean
 
-# Starting the application
-CMD ["java", "-jar", "blog-0.0.1-SNAPSHOT.jar"]
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /target/blog-0.0.1-SNAPSHOT.jar blog.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","blog.jar"]
