@@ -3,6 +3,6 @@ COPY . .
 RUN mvn clean
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build blog-0.0.1-SNAPSHOT.jar blog.jar
+COPY --from= target/blog-0.0.1-SNAPSHOT.jar blog.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","blog.jar"]
